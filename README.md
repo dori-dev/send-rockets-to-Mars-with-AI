@@ -1,2 +1,3 @@
 # send-rocket-with-AI
-Send rocket with artificial intelligence
+Send rockets to Mars with artificial intelligence in python.
+
