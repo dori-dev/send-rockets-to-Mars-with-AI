@@ -111,7 +111,6 @@ class Rocket:
     """To update, show and calculate fitness of rockets
     """
 
-    # pylint: disable=too-many-instance-attributes
     def __init__(self, dna=None):
         self.pos = Vector(WIDTH // 2, HEIGHT - 40)  # position
         self.vel = Vector(0, 0)  # velocity
