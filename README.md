@@ -21,6 +21,12 @@ pip install EasyDraw
 python main.py
 ```
 
+## Change
+- in the constant.py
+- You can change the POPULATION_SIZE, ROCKET_LIFESPAN and MUTATION_RATE variables to change generations
+- You can change the STARS_COUNT, BLACKHOLES_COUNT, MARS_COORDS, EARTH_COORDS to change GUI
+
+
 #
 ## Project Tree
 ```
@@ -39,3 +45,10 @@ send-rockets-to-Mars-with-AI
     └── rocket-moving.png
 ```
 
+#
+## Links
+
+
+Download source code: [Click Here](https://github.com/dori-dev/FlappyBird/archive/refs/heads/main.zip)
+
+My github acount: [Click Here](https://github.com/dori-dev/)
