@@ -52,19 +52,21 @@ class Population:
 
         for i in range(0, POPULATION_SIZE):
             # The number of times this parent is in the mating pool
-            # To change the chance of parents choosing the rocket that scored more points than the others  # TODO
+            # To change the chance of choosing parents over fitness
             number = ceil(self.rockets[i].fitness * 100)
             for _ in range(0, number):
                 self.mating_pool.append(self.rockets[i])
 
     def selection(self):
         new_rockets = []
-
         for _ in self.rockets:
+            # choosing parents
             parent_a = choice(self.mating_pool).dna
             parent_b = choice(self.mating_pool).dna
+            # Mutations and distribution of genes‌
             child = parent_a.crossover(parent_b)
             child.mutation()
+            # Create rocket with new genes
             new_rockets.append(Rocket(child))
         self.rockets = new_rockets
 
@@ -72,6 +74,7 @@ class Population:
 class DNA:
     def __init__(self, genes=None):
         if genes is None:
+            # In the first generation, random genes are created
             self.genes = []
             for _ in range(0, ROCKET_LIFESPAN):
                 self.genes.append(RandomVector())
@@ -79,14 +82,8 @@ class DNA:
             self.genes = genes
 
     def crossover(self, parent_b):
-        new_genes = []
-        mid_point = randint(0, ROCKET_LIFESPAN)
-        for i in range(0, ROCKET_LIFESPAN):
-            if i > mid_point:
-                new_genes.append(self.genes[i])
-            else:
-                new_genes.append(parent_b.genes[i])
-
+        midpoint = randint(0, ROCKET_LIFESPAN)
+        new_genes = parent_b.genes[:midpoint] + self.genes[midpoint:]
         return DNA(new_genes)
 
     def mutation(self):
@@ -97,31 +94,32 @@ class DNA:
 
 class Rocket:
     def __init__(self, dna=None):
-        # position
-        self.pos = Vector(WIDTH // 2, HEIGHT - 40)
-        # velocity
-        self.vel = Vector(0, 0)
-        # acceleration
-        self.acc = Vector(0, 0)
+        self.pos = Vector(WIDTH // 2, HEIGHT - 40)  # position
+        self.vel = Vector(0, 0)  # velocity
+        self.acc = Vector(0, 0)  # acceleration
 
         self.reached = False
         self.crashed = False
         self.alive_tick = 0
+        self.fitness = 0
 
         if dna is None:
+            # In the first generation, random genes are used
             self.dna = DNA()
         else:
             self.dna = dna
-        self.fitness = 0
 
     def apply_force(self, force):
         self.acc += force
 
     def update(self, app):
+        # If crashed or reached, don't update rocket
         if self.crashed or self.reached:
             return
         dist = self.pos.distance_from(MARS_COORDS)
         self.alive_tick += 1
+
+        # Reached Mars
         if dist < 80:
             self.reached = True
             self.pos = MARS_COORDS
@@ -129,38 +127,51 @@ class Rocket:
             self.alive_tick = ROCKET_LIFESPAN
 
         for blackhole in app.blackholes:
+            # It hit this blackhole
             if self.pos.distance_from(blackhole) < 60:
                 self.crashed = True
 
-        if self.pos.x > WIDTH or self.pos.x < 0 or self.pos.y > HEIGHT or self.pos.y < 0:
+        # It crashed
+        if self.pos.x > WIDTH or self.pos.x < 0 or \
+                self.pos.y > HEIGHT or self.pos.y < 0:
             self.crashed = True
 
+        # Applying force according to the genes it has
         self.apply_force(self.dna.genes[app.lifespan_count])
 
-        if not self.reached:
-            self.vel += self.acc
-            self.pos += self.vel
-            self.acc *= 0
+        # Apply velocity, change position and reset acceleration
+        self.vel += self.acc
+        self.pos += self.vel
+        self.acc *= 0
 
     def calculate_fitness(self):
         dist = self.pos.distance_from(MARS_COORDS)
+        # If the distance is greater than WIDTH, it becomes WIDTH
         dist = min(dist, WIDTH)
 
+        # The shorter the distance, the more fitness are calculated
         self.fitness = WIDTH + 1 - dist
+        # Calculating fitness based on when rocket survive
         self.fitness *= self.alive_tick ** 0.5 + 1
+        # If the rocket reached or crashed, the fitness changes
         if self.reached:
             self.fitness *= self.alive_tick ** 0.5 * 2
         if self.crashed:
             self.fitness /= dist ** 0.5 + 1
 
+        # Return the ceiling of x as an Integral.
         self.fitness = ceil(self.fitness)
 
     def show(self, canvas):
+        # If crashed, don't show rocket
         if self.crashed:
             return
+
         canvas.push()
         canvas.translate(self.pos.x, self.pos.y)
+        # Move the rocket
         canvas.rotate(self.vel.heading())
+        # If the speed is low, the image of the rocket without fire is used
         if self.vel.length() < 1 or self.reached:
             img = 'rocket-idle.png'
         else:
