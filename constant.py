@@ -17,12 +17,12 @@ BH_DIST = 160  # black holes distance
 IMAGE_DIR = join(dirname(__file__), 'images/')
 
 # number of rockets population
-POPULATION_SIZE = 10  # TODO back changes
+POPULATION_SIZE = 10
 # It is like the fuel that every rocket has to travel,
 # and it decreases in each frame
 ROCKET_LIFESPAN = 200
 # Percentage of genes that mutate in each generation
-MUTATION_RATE = 0.11  # TODO back changes
+MUTATION_RATE = 0.10
 
 STARS_COUNT = 250
 BLACKHOLES_COUNT = 3
