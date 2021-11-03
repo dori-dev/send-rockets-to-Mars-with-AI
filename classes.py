@@ -146,7 +146,6 @@ class Rocket:
         # If crashed or reached, don't update rocket
         if self.crashed or self.reached:
             return
-        dist = self.pos.distance_from(MARS_COORDS)
 
         # Applying force according to the genes it has
         self.apply_force(self.dna.genes[app.lifespan_count])
@@ -157,7 +156,7 @@ class Rocket:
         self.acc *= 0
 
         # Reached Mars
-        if dist < 80:
+        if self.pos.distance_from(MARS_COORDS) < 80:
             self.reached = True
             self.pos = MARS_COORDS
             # This means that the rocket has been alive for as long as possible
