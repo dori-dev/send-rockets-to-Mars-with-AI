@@ -1,4 +1,4 @@
-# send-rocket-with-AI
+# send rocket to Mars with AI
 Send rockets to Mars with artificial intelligence(Genetic algorithm) in python.
 
 #
@@ -18,14 +18,13 @@ pip install EasyDraw
 ## Run the Code
 
 ```
-python main.py
+python3 main.py
 ```
 
 ## Change
-- in the constant.py
 - You can change the POPULATION_SIZE, ROCKET_LIFESPAN and MUTATION_RATE constant variables to change generations.
 - You can change the BH_DIST, STARS_COUNT, BLACKHOLES_COUNT, constant variables to change GUI.
-
+- You can change the calculations in calculate_fitness method in Rocket class to obtain different outputs!
 
 #
 ## Project Tree
@@ -49,6 +48,6 @@ send-rockets-to-Mars-with-AI
 ## Links
 
 
-Download source code: [Click Here](https://github.com/dori-dev/FlappyBird/archive/refs/heads/main.zip)
+Download source code: [Click Here](https://github.com/dori-dev/send-rockets-to-Mars-with-AI/archive/refs/heads/main.zip)
 
 My github acount: [Click Here](https://github.com/dori-dev/)
