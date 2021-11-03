@@ -1,4 +1,4 @@
-# send rocket to Mars with AI
+# send rockets to Mars with AI
 Send rockets to Mars with artificial intelligence(Genetic algorithm) in python.
 
 #
