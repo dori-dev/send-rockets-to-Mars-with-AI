@@ -22,9 +22,9 @@ python3 main.py
 ```
 
 ## You Can Change
-- You can change the POPULATION_SIZE, ROCKET_LIFESPAN and MUTATION_RATE constant variables to change generations.
-- You can change the BH_DIST, STARS_COUNT, BLACKHOLES_COUNT constant variables to change GUI.
-- You can change the calculations in calculate_fitness method in Rocket class to obtain different outputs!
+- You can change the `POPULATION_SIZE`, `ROCKET_LIFESPAN` and `MUTATION_RATE` constant variables to change generations.
+- You can change the `BH_DIST`, `STARS_COUNT`, `BLACKHOLES_COUNT` constant variables to change GUI.
+- You can change the calculations in `calculate_fitness` method in `Rocket` class to obtain different outputs!
 
 #
 ## Project Tree
