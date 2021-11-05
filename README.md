@@ -1,5 +1,5 @@
 # Send Rockets To Mars With AI
-Send rockets to Mars with Genetic algorithm in python.
+Send rockets to Mars with genetic algorithm in python.
 
 #
 ## Tools
