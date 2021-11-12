@@ -1,4 +1,4 @@
-"""testing the fitness to get the best performance.
+"""Testing the fitness to get the best performance.
 """
 from math import ceil
 from constant import WIDTH, ROCKET_LIFESPAN
