@@ -1,5 +1,5 @@
 """
-Project functions
+The  project functions
 """
 
 # local imports
