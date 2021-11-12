@@ -1,5 +1,5 @@
 """
-Project classes
+The project classes
 """
 
 # Standard library imports
