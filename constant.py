@@ -1,5 +1,5 @@
 """
-Project constant variables
+The  project constant variables
 """
 
 # Standard library imports
