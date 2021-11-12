@@ -1,4 +1,5 @@
-"""Send rockets to Mars with artificial intelligence(Genetic algorithm).
+"""Main of Project
+Send rockets to Mars with artificial intelligence(Genetic algorithm).
 """
 # Standard library imports
 from random import randint
